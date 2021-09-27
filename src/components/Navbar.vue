@@ -9,14 +9,13 @@
       >
     </div>
     <ul id="sidenav" class="sidenav sidenav-fixed">
-      <br><br>
+      <nav></nav>
       <li>
-        <a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a>
+        <a href="#!"><i class="material-icons">add</i>New Game</a>
       </li>
-      <li><a href="#!">Second Link</a></li>
       <li><div class="divider"></div></li>
-      <li><a class="subheader">Subheader</a></li>
-      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+      <li><a class="subheader">Game</a></li>
+      <li><a href="#!">Saved Games</a></li>
     </ul>
   </div>
 </template>
@@ -47,7 +46,8 @@ a.sidenav-trigger.top-nav {
   text-align: center;
   height: 48px;
   width: 48px;
-  top: 28px;
+  top: 7px;
+  left: 0px;
   float: none;
   margin-left: 1.5rem;
   color: #f3989b;
