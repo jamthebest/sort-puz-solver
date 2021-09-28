@@ -25,7 +25,7 @@ import M from "materialize-css";
 import _ from "lodash";
 
 export default {
-  name: "HelloWorld",
+  name: "Navbar",
   props: {
     msg: String,
   },

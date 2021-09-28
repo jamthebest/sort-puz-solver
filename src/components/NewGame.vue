@@ -18,7 +18,20 @@
             <label for="size" class="active">Bottle Size</label>
           </div>
           <div class="input-field col s3">
-            <a class="waves-effect waves-light btn">Generate</a>
+            <a class="waves-effect waves-light btn" v-on:click="generate"
+              >Generate</a
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s11 divider"></div>
+        </div>
+        <div class="row">
+          <div class="col s11" id="bottle-content">
+            <div class="row">
+              <div class="col s12" id="col-1"><Bottle /></div>
+              <div class="col s12" id="col-2"></div>
+            </div>
           </div>
         </div>
       </form>
@@ -27,6 +40,7 @@
 </template>
 
 <script>
+import Bottle from "./Bottle.vue";
 import M from "materialize-css";
 // import _ from "lodash";
 
@@ -38,8 +52,16 @@ export default {
       size: 4,
     };
   },
+  components: {
+    Bottle
+  },
   mounted() {
     M.AutoInit();
+  },
+  methods: {
+    generate: function () {
+      console.log(this.quantity, this.size);
+    },
   },
 };
 </script>
