@@ -29,8 +29,8 @@
         <div class="row">
           <div class="col s11" id="bottle-content">
             <div class="row">
-              <div class="col s12" id="col-1"><Bottle /></div>
-              <div class="col s12" id="col-2"></div>
+              <div class="col s12" id="col-1"><Bottle v-for="item in firstMiddle" v-bind:key="item" :id="item" :size="size"/></div>
+              <div class="col s12" id="col-2"><Bottle v-for="item in secondMiddle" v-bind:key="item" :id="item" :size="size"/></div>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
 <script>
 import Bottle from "./Bottle.vue";
 import M from "materialize-css";
-// import _ from "lodash";
+import _ from "lodash";
 
 export default {
   name: "NewGame",
@@ -50,6 +50,7 @@ export default {
     return {
       quantity: 14,
       size: 4,
+      bottles: 0
     };
   },
   components: {
@@ -61,10 +62,22 @@ export default {
   methods: {
     generate: function () {
       console.log(this.quantity, this.size);
+      this.bottles = this.quantity;
     },
   },
+  computed: {
+    firstMiddle: function() {
+      return _.ceil(this.bottles / 2);
+    },
+    secondMiddle: function() {
+      return _.floor(this.bottles / 2);
+    }
+  }
 };
 </script>
 
 <style scoped>
+#bottle-content {
+  text-align: left;
+}
 </style>

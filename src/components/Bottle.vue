@@ -23,7 +23,9 @@
 <script>
 export default {
   name: 'Bottle',
-  props: {}
+  props: {
+    id: Number
+  }
 }
 </script>
 
@@ -38,13 +40,13 @@ export default {
 .bottle {
   display: inline-block;
   position: relative;
-  width: 100px;
+  width: 50px;
   margin: 0 20px 50px 0;
 }
 
 .bottle:after {
   height: 14px;
-  width: 100px;
+  width: 50px;
   border-radius: 46px/10px;
   box-shadow: 0px 1px 4px -2px rgba(0, 0, 0, 0.2), 0px 2px 10px -3px rgba(0, 0, 0, 0.1);
   bottom: -7.6px;
@@ -53,7 +55,7 @@ export default {
 
 .bottle:before {
   height: 14px;
-  width: 100px;
+  width: 50px;
   border-radius: 46px/10px;
   box-shadow: 0px 2px 10px -2px rgba(0, 204, 255, 0.3), 0px 2px 15px -2px rgba(0, 204, 255, 0.4);
   bottom: -7.6px;
@@ -62,7 +64,7 @@ export default {
 
 .bottle_top {
   height: 30px;
-  width: 80px;
+  width: 40px;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-top: none;
@@ -72,7 +74,7 @@ export default {
 
 .bottle_top:after, .bottle_top:before {
   height: 10px;
-  width: 78px;
+  width: 36px;
   border-radius: 46px/10px;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-bottom: 2px solid rgba(255, 255, 255, 0.6);
@@ -93,7 +95,7 @@ export default {
 
 .bottle_neck {
   height: 20px;
-  width: 62px;
+  width: 31px;
   position: relative;
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -104,7 +106,7 @@ export default {
 
 .bottle_neck:after, .bottle_neck:before {
   height: 8px;
-  width: 62px;
+  width: 31px;
   border-radius: 30px/8px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-top: none;
@@ -122,9 +124,9 @@ export default {
 }
 
 .bottle_main {
-  height: 165px;
+  height: 125px;
   position: relative;
-  width: 98px;
+  width: 49px;
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-top: none;
@@ -133,7 +135,7 @@ export default {
 
 .bottle_main:after, .bottle_main:before {
   height: 12px;
-  width: 96px;
+  width: 48px;
   border-radius: 46px/10px;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-bottom: 2px solid rgba(255, 255, 255, 0.7);
@@ -147,13 +149,13 @@ export default {
 }
 
 .bottle_main:before {
-  top: 158px;
+  top: 118px;
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7) inset, 0px 0px 3px rgba(0, 0, 0, 0.15) inset;
 }
 
 .bottle_mouth {
   height: 52px;
-  width: 44px;
+  width: 22px;
   margin: 0px auto;
   position: relative;
   background: none;
@@ -166,7 +168,7 @@ export default {
 
 .bottle_mouth:after {
   height: 6px;
-  width: 44px;
+  width: 22px;
   border-radius: 25px/6px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   left: -1px;
@@ -176,7 +178,7 @@ export default {
 }
 
 .bottle_inner {
-  height: 164px;
+  height: 124px;
   width: 92%;
   margin: 0px auto;
   border-radius: 10px 10px 20px 20px/10px;
@@ -191,7 +193,7 @@ export default {
 
 .bottle_inner:before {
   border-radius: 40px/4px;
-  top: 155px;
+  top: 115px;
   width: 90%;
   left: 3px;
   height: 9px;
@@ -200,7 +202,7 @@ export default {
 .bottle_top .highlight {
   display: block;
   height: 30px;
-  width: 20px;
+  width: 10px;
   position: absolute;
   left: 5px;
   top: 5px;
@@ -210,7 +212,7 @@ export default {
 
 .bottle_top .highlight:after {
   height: 30px;
-  width: 2px;
+  width: 1px;
   left: -3px;
   top: -1px;
   transform: skew(0deg, 5deg);
@@ -219,8 +221,8 @@ export default {
 
 .bottle_main .highlight {
   display: block;
-  height: 150px;
-  width: 25px;
+  height: 110px;
+  width: 12.5px;
   position: absolute;
   left: 10px;
   top: 6px;
@@ -230,8 +232,8 @@ export default {
 }
 
 .bottle_main .highlight:after {
-  height: 150px;
-  width: 4px;
+  height: 110px;
+  width: 2px;
   left: -6px;
   top: 0px;
   transform: skew(0deg, 3deg);
@@ -241,7 +243,7 @@ export default {
 .bottle_neck .highlight {
   display: block;
   height: 20px;
-  width: 25px;
+  width: 12.5px;
   position: absolute;
   left: 2px;
   top: 6px;
@@ -252,7 +254,7 @@ export default {
 .water {
   background: linear-gradient(-85deg, rgba(0, 204, 255, 0.35), rgba(0, 173, 216, 0.55) 70%, rgba(0, 173, 216, 0.4));
   width: 98%;
-  height: 40px;
+  height: 30px;
   /* position: absolute; */
   left: 1px;
   bottom: 1px;
@@ -262,7 +264,7 @@ export default {
 
 .water:after {
   height: 10px;
-  width: 88px;
+  width: 44px;
   left: -1px;
   top: 0px;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(0, 204, 255, 0.05) 50%, rgba(0, 204, 255, 0.1) 80%, rgba(255, 255, 255, 0.3));
@@ -274,8 +276,8 @@ export default {
 
 .water:before {
   height: 10px;
-  width: 82px;
-  left: 2px;
+  width: 41px;
+  left: 0px;
   bottom: -1px;
   background: linear-gradient(to right, rgba(0, 173, 216, 0.2), rgba(0, 204, 255, 0.1) 50%, rgba(0, 204, 255, 0.2) 80%, rgba(0, 173, 216, 0.3));
   border-radius: 50px/10px;
