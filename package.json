@@ -12,7 +12,8 @@
     "lodash": "^4.17.21",
     "material-design-icons": "^3.0.1",
     "materialize-css": "^1.0.0-rc.2",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-swatches": "^2.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

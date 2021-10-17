@@ -1,30 +1,50 @@
 <template>
   <div class="bottle">
-    <div class="bottle_top">
+    <!-- <div class="bottle_top">
       <div class="bottle_mouth">
         <div class="highlight"></div>
       </div>
     </div>
     <div class="bottle_neck">
       <div class="highlight"></div>
-    </div>
+    </div> -->
     <div class="bottle_main">
       <div class="bottle_inner">
-        <div class="water"></div>
-        <div class="water"></div>
-        <div class="water"></div>
-        <div class="water"></div>
+        <div v-for="color in colors" v-bind:key="color.id" class="water teal-text lighten-2"><span class="plus-icon"><i class="material-icons">add</i></span></div>
       </div>
-      <div class="highlight"></div>
+      <!-- <div class="highlight"></div> -->
     </div>
+    <swatches v-model="color" />
+    <div>{{color}}</div>
   </div>
 </template>
 
 <script>
+import Swatches from 'vue-swatches';
+// import "vue-multiselect/dist/vue-multiselect.min.css";
+
 export default {
   name: 'Bottle',
+  components: { 
+    Swatches
+  },
   props: {
-    id: Number
+    id: Number,
+    size: Number
+  },
+  data: function() {
+    return {
+      colors: [],
+      color: ''
+    };
+  },
+  mounted: function() {
+    for (var i = 0; i < this.size; i++) {
+      this.colors.push({
+        id: i + 1,
+        name: ''
+      });
+    }
   }
 }
 </script>
@@ -133,7 +153,7 @@ export default {
   border-bottom: none;
 }
 
-.bottle_main:after, .bottle_main:before {
+.bottle_main:before {
   height: 12px;
   width: 48px;
   border-radius: 46px/10px;
@@ -252,17 +272,20 @@ export default {
 }
 
 .water {
-  background: linear-gradient(-85deg, rgba(0, 204, 255, 0.35), rgba(0, 173, 216, 0.55) 70%, rgba(0, 173, 216, 0.4));
+  /* background: linear-gradient(-85deg, rgba(0, 204, 255, 0.35), rgba(0, 173, 216, 0.55) 70%, rgba(0, 173, 216, 0.4)); */
   width: 98%;
-  height: 30px;
+  height: 25px;
+  margin-top: 4px;
+  text-align: center;
   /* position: absolute; */
   left: 1px;
   bottom: 1px;
+  cursor: pointer;
   border-radius: 50px 50px 20px 20px/8px 8px 10px 10px;
-  box-shadow: 0px 0px 6px rgba(0, 204, 255, 0.5) inset, 0px 0.2px 3px -1px rgba(0, 0, 0, 0.3) inset, 0px 2px 6px -1px rgba(0, 0, 0, 0.1) inset, 0px 2px 5px rgba(0, 204, 255, 0.3), 0px 1px 3px rgba(0, 204, 255, 0.2);
+  box-shadow: 0px 0px 2px rgba(0, 204, 255, 0.5) inset, 0px 0.2px 2px -1px rgba(0, 0, 0, 0.3) inset, 0px 2px 6px -1px rgba(0, 0, 0, 0.1) inset, 0px 2px 5px rgba(0, 204, 255, 0.3), 0px 1px 3px rgba(0, 204, 255, 0.2);
 }
 
-.water:after {
+/* .water:after {
   height: 10px;
   width: 44px;
   left: -1px;
@@ -272,7 +295,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom-color: rgba(255, 255, 255, 0.4);
   box-shadow: 0px 1px 2px -1px rgba(0, 204, 255, 0.35);
-}
+} */
 
 .water:before {
   height: 10px;
