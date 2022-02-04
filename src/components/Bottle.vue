@@ -10,23 +10,24 @@
     </div> -->
     <div class="bottle_main">
       <div class="bottle_inner">
-        <div v-for="color in colors" v-bind:key="color.id" class="water teal-text lighten-2"><span class="plus-icon"><i class="material-icons">add</i></span></div>
+        <v-swatches v-model="color.name" v-for="color in colors" v-bind:key="color.id" class="water teal-text lighten-2"><span class="plus-icon"><i class="material-icons">add</i></span></v-swatches>
       </div>
       <!-- <div class="highlight"></div> -->
     </div>
-    <swatches v-model="color" />
-    <div>{{color}}</div>
+    <!-- <swatches v-model="color" />
+    <div>{{color}}</div> -->
   </div>
 </template>
 
 <script>
-import Swatches from 'vue-swatches';
+import VSwatches from 'vue-swatches';
+import "vue-swatches/dist/vue-swatches.css"
 // import "vue-multiselect/dist/vue-multiselect.min.css";
 
 export default {
   name: 'Bottle',
   components: { 
-    Swatches
+    VSwatches
   },
   props: {
     id: Number,
@@ -35,14 +36,14 @@ export default {
   data: function() {
     return {
       colors: [],
-      color: ''
+      // color: ''
     };
   },
   mounted: function() {
     for (var i = 0; i < this.size; i++) {
       this.colors.push({
         id: i + 1,
-        name: ''
+        name: null
       });
     }
   }
@@ -144,7 +145,7 @@ export default {
 }
 
 .bottle_main {
-  height: 125px;
+  height: 207px;
   position: relative;
   width: 49px;
   background: none;
@@ -169,7 +170,7 @@ export default {
 }
 
 .bottle_main:before {
-  top: 118px;
+  top: 206px;
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7) inset, 0px 0px 3px rgba(0, 0, 0, 0.15) inset;
 }
 
@@ -198,7 +199,7 @@ export default {
 }
 
 .bottle_inner {
-  height: 124px;
+  height: 213px;
   width: 92%;
   margin: 0px auto;
   border-radius: 10px 10px 20px 20px/10px;
@@ -213,7 +214,7 @@ export default {
 
 .bottle_inner:before {
   border-radius: 40px/4px;
-  top: 115px;
+  top: 200px;
   width: 90%;
   left: 3px;
   height: 9px;
@@ -274,7 +275,7 @@ export default {
 .water {
   /* background: linear-gradient(-85deg, rgba(0, 204, 255, 0.35), rgba(0, 173, 216, 0.55) 70%, rgba(0, 173, 216, 0.4)); */
   width: 98%;
-  height: 25px;
+  height: 42px;
   margin-top: 4px;
   text-align: center;
   /* position: absolute; */
@@ -298,7 +299,7 @@ export default {
 } */
 
 .water:before {
-  height: 10px;
+  height: 5px;
   width: 41px;
   left: 0px;
   bottom: -1px;
