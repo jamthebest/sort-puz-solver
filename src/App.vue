@@ -16,10 +16,20 @@
       </div>
     </div>
 
-    <div class="fixed-action-btn">
+    <!-- <div class="fixed-action-btn">
       <a class="btn-floating btn-large waves-effect waves-light blue">
         <i class="large material-icons">add</i>
       </a>
+    </div> -->
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large waves-effect waves-light red">
+        <i class="large material-icons">menu</i>
+      </a>
+      <ul>
+        <li><a class="btn-floating waves-effect waves-light blue" v-on:click="clear"><i class="material-icons">add</i></a></li>
+        <li><a class="btn-floating waves-effect waves-light green" v-on:click="save"><i class="material-icons">save</i></a></li>
+        <li><a class="btn-floating waves-effect waves-light yellow darken-1" v-on:click="execute"><i class="material-icons">play_arrow</i></a></li>
+      </ul>
     </div>
   </div>
 </template>
@@ -45,10 +55,27 @@ export default {
       return this.content.toLowerCase();
     },
   },
+  methods: {
+    clear: function () {
+      this.$root.$emit('clear');
+    },
+    save: function () {
+      this.$root.$emit('save');
+    },
+    execute: function () {
+      this.$root.$emit('execute');
+    }
+  },
   mounted() {
     M.AutoInit();
     var elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems, {});
+    this.$on('clear', function() {
+      console.log('test clear')
+    });
+    this.$on('test', function() {
+      console.log('test')
+    });
   },
 };
 </script>

@@ -18,9 +18,7 @@
             <label for="size" class="active">Bottle Size</label>
           </div>
           <div class="input-field col s3">
-            <a class="waves-effect waves-light btn" v-on:click="generate"
-              >Generate</a
-            >
+            <a class="waves-effect waves-light btn" v-on:click="generate">Generate</a>
           </div>
         </div>
         <div class="row">
@@ -58,12 +56,22 @@ export default {
   },
   mounted() {
     M.AutoInit();
+    this.$root.$on('clear', this.clear);
+    this.$root.$on('execute', this.execute);
   },
   methods: {
     generate: function () {
       console.log(this.quantity, this.size);
       this.bottles = this.quantity;
+      this.$emit('test');
     },
+    clear: function () {
+      console.log('clear');
+      this.bottles = 0;
+    },
+    execute: function () {
+      console.log('execute');
+    }
   },
   computed: {
     firstMiddle: function() {

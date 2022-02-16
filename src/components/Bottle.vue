@@ -10,7 +10,7 @@
     </div> -->
     <div class="bottle_main">
       <div class="bottle_inner">
-        <v-swatches v-model="color.name" v-for="color in colors" v-bind:key="color.id" class="water teal-text lighten-2"><span class="plus-icon"><i class="material-icons">add</i></span></v-swatches>
+        <v-swatches v-model="color.name" :swatches="colorList" v-for="color in colors" v-bind:key="color.id" class="water teal-text lighten-2"><span class="plus-icon"><i class="material-icons">add</i></span></v-swatches>
       </div>
       <!-- <div class="highlight"></div> -->
     </div>
@@ -36,6 +36,12 @@ export default {
   data: function() {
     return {
       colors: [],
+      colorList: [
+        '#008000', '#45a345', '#5AE55A', '#000000',
+        '#c0382b', '#f12814', '#ed7e92', '#8f8a8a',
+        '#04609d', '#15dfdf', '#800080', '#e91ae9',
+        '#f1f100', '#cbb046', '#ef9c05', '#bd6309'
+      ]
       // color: ''
     };
   },
