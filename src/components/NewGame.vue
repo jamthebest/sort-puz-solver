@@ -34,6 +34,7 @@
         </div>
       </form>
     </div>
+    <!-- <a onclick="M.toast({html: 'I am a toast'})" class="btn">Error!</a> -->
   </div>
 </template>
 
@@ -48,7 +49,9 @@ export default {
     return {
       quantity: 14,
       size: 4,
-      bottles: 0
+      bottles: 0,
+      selectedColors: {},
+      matrixColor: []
     };
   },
   components: {
@@ -58,19 +61,31 @@ export default {
     M.AutoInit();
     this.$root.$on('clear', this.clear);
     this.$root.$on('execute', this.execute);
+    this.$root.$on('colorChange', this.onColorChange);
   },
   methods: {
     generate: function () {
       console.log(this.quantity, this.size);
       this.bottles = this.quantity;
-      this.$emit('test');
     },
     clear: function () {
       console.log('clear');
       this.bottles = 0;
+      this.selectedColors = {};
+      this.matrixColor = [];
     },
     execute: function () {
       console.log('execute');
+    },
+    onColorChange: function (params) {
+      console.log('onColorChange', params);
+      this.selectedColors[params.color] = (this.selectedColors[params.color] || 0) + 1;
+      // console.log(this.selectedColors);
+      if (this.selectedColors[params.color] > 4) {
+        this.selectedColors[params.color]--;
+        M.toast({html: 'The color already was used 4 times!!'});
+        this.$root.$emit('clearColor', params.x, params.y);
+      }
     }
   },
   computed: {

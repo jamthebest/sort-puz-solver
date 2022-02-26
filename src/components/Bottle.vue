@@ -22,6 +22,7 @@
 <script>
 import VSwatches from 'vue-swatches';
 import "vue-swatches/dist/vue-swatches.css"
+import _ from "lodash";
 // import "vue-multiselect/dist/vue-multiselect.min.css";
 
 export default {
@@ -36,6 +37,7 @@ export default {
   data: function() {
     return {
       colors: [],
+      oldColors: [],
       colorList: [
         '#008000', '#45a345', '#5AE55A', '#000000',
         '#c0382b', '#f12814', '#ed7e92', '#8f8a8a',
@@ -46,11 +48,36 @@ export default {
     };
   },
   mounted: function() {
+    this.$root.$on('clearColor', this.clearColor);
     for (var i = 0; i < this.size; i++) {
       this.colors.push({
         id: i + 1,
         name: null
       });
+    }
+  },
+  watch: {
+    colors: {
+      deep: true,
+      handler (newVal) {
+        let diff = _.filter(newVal, (color, idx) => {
+          return !_.isNil(this.oldColors[idx]) && this.oldColors[idx].name !== color.name;
+        })[0];
+        // console.log('diff', diff, JSON.stringify(newVal), JSON.stringify(this.oldColors));
+        if (!_.isNil(diff) && !_.isNil(diff.name)) {
+          this.$root.$emit('colorChange', {x: this.id, y: diff.id, color: diff.name});
+        }
+        this.oldColors = JSON.parse(JSON.stringify(newVal));
+      }
+    }
+  },
+  methods: {
+    clearColor (id, idx) {
+      console.log('clear color', id, idx);
+      if (this.id === id) {
+        this.colors[idx - 1].name = null;
+        this.oldColors[idx - 1].name = null;
+      }
     }
   }
 }
