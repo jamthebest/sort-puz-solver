@@ -32,7 +32,8 @@ export default {
   },
   props: {
     id: Number,
-    size: Number
+    size: Number,
+    loadedColors: Array
   },
   data: function() {
     return {
@@ -49,11 +50,16 @@ export default {
   },
   mounted: function() {
     this.$root.$on('clearColor', this.clearColor);
+    this.$root.$on('getColors', this.getColors);
+
     for (var i = 0; i < this.size; i++) {
       this.colors.push({
         id: i + 1,
         name: null
       });
+    }
+    if (this.loadedColors) {
+      this.loadColors(this.loadedColors);
     }
   },
   watch: {
@@ -63,7 +69,10 @@ export default {
         let diff = _.filter(newVal, (color, idx) => {
           return !_.isNil(this.oldColors[idx]) && this.oldColors[idx].name !== color.name;
         })[0];
-        // console.log('diff', diff, JSON.stringify(newVal), JSON.stringify(this.oldColors));
+        console.log('diff', diff, JSON.stringify(newVal), JSON.stringify(this.oldColors));
+        if (!_.isNil(diff) && this.oldColors[diff.id - 1] && this.oldColors[diff.id - 1].name) {
+          this.$root.$emit('removeOneColor', this.oldColors[diff.id - 1].name);
+        }
         if (!_.isNil(diff) && !_.isNil(diff.name)) {
           this.$root.$emit('colorChange', {x: this.id, y: diff.id, color: diff.name});
         }
@@ -78,8 +87,21 @@ export default {
         this.colors[idx - 1].name = null;
         this.oldColors[idx - 1].name = null;
       }
+    },
+    loadColors (colors) {
+      _.forEach(colors, (color, idx) => {
+        this.colors[idx].name = color;
+      });
     }
-  }
+  },
+    getColors (idx) {
+      console.log(this.id, idx);
+      if (idx === this.id) {
+        return _.map(this.colors, color => {
+          return color.name || '';
+        });
+      }
+    }
 }
 </script>
 
